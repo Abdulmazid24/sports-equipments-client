@@ -69,7 +69,7 @@ const Navbar = () => {
             Sign Up
           </button>
         </NavLink> */}
-        <div className="navbar-end font-bold text-lg">
+        <div className="navbar-end font-bold text-lg flex justify-center items-center">
           {user && user.email ? (
             <button className=" border-2 rounded-full mx-2">
               <img
@@ -101,14 +101,14 @@ const Navbar = () => {
               </button>
             </Link>
           )}
-          {user && (
+          {/* {user && (
             <button
               title="Your profile"
               className="px-3 py-1 border-2 border-black rounded-full bg-gray-500 text-white text-2xl font-normal mx-3"
             >
               <Link to={'/profile'}>A</Link>
             </button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -27,21 +27,21 @@ const AllSportsEquipment = () => {
         <p className="text-center text-lg font-medium">Loading...</p>
       ) : equipments.length > 0 ? (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-gradient-to-r from-indigo-950 via-black to-indigo-950  text-white border-gray-300 text-center">
-            <thead className="text-center p-3 border">
+          <table className="min-w-full bg-gradient-to-r from-indigo-950 via-black to-indigo-950  text-white   text-center">
+            <thead className="text-center p-3 border-b-4  py-5">
               <tr>
-                <th className="py-2 px-4 border-b">Image</th>
-                <th className="py-2 px-4 border-b">Name</th>
-                <th className="py-2 px-4 border-b">Category</th>
-                <th className="py-2 px-4 border-b">Price</th>
-                <th className="py-2 px-4 border-b">Action</th>
+                <th className="py-3 px-4 ">Image</th>
+                <th className="py-3 px-4 ">Name</th>
+                <th className="py-3 px-4 border-b">Category</th>
+                <th className="py-3 px-4 ">Price</th>
+                <th className="py-3 px-4 ">Action</th>
               </tr>
             </thead>
-            <tbody className="text-center ">
+            <tbody className="text-center  ">
               {equipments.map(equipment => (
                 <tr
                   key={equipment._id}
-                  className="hover:bg-gray-100 hover:text-gray-950"
+                  className="hover:bg-gray-100 hover:text-gray-950 mt-2"
                 >
                   <td className="py-2 px-4 border-b">
                     <img
@@ -59,10 +59,8 @@ const AllSportsEquipment = () => {
                   <td className="py-2 px-4 border-b">${equipment.price}</td>
                   <td className="py-2 px-4 border-b">
                     <button
-                      onClick={() =>
-                        navigate(`/equipment-details/${equipment._id}`)
-                      }
-                      className="px-4 py-2 bg-gray-950 text-white text-sm font-semibold border border-gray-300 rounded shadow hover:bg-blue-600"
+                      onClick={() => navigate(`/viewDetails/${equipment._id}`)}
+                      className="px-4 py-2 bg-gray-950 text-white text-sm font-semibold border border-inherit rounded shadow hover:bg-black "
                     >
                       View Details
                     </button>

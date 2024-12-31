@@ -1,19 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
-import { signInWithPopup } from 'firebase/auth';
-import { GoogleAuthProvider } from 'firebase/auth/web-extension';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import { toast, ToastContainer } from 'react-toastify';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, setUser } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogin = e => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -56,10 +55,11 @@ const Login = () => {
           progress: undefined,
           theme: 'light',
         });
+        navigate(location?.state ? location.state : '/');
       })
       .catch(error => {
         setErrorMessage(error.message);
-        toast.error(errorMessage, {
+        toast.error(`${errorMessage}`, {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,

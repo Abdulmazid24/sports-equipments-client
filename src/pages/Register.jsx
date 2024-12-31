@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
-
 const Register = () => {
   const { createUser, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +70,7 @@ const Register = () => {
         });
       });
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-950 via-black to-indigo-950 py-10 font-bold">
       <div className="w-full max-w-md p-8 rounded-md border transform transition hover:scale-105 duration-300 bg-gradient-to-r from-indigo-950 via-black to-indigo-950 text-white">

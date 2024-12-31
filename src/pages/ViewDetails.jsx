@@ -20,7 +20,7 @@ const ViewDetails = () => {
   } = equipmentsDetails;
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-950 via-black to-indigo-950  flex justify-center items-center py-10 px-4 text-white">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-950 via-black to-indigo-950  flex justify-center items-center py-12 px-4 text-white">
       <div className="bg-gradient-to-r from-indigo-950 via-black to-indigo-950 text-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 text-white">
           {/* Image Section */}
@@ -35,18 +35,18 @@ const ViewDetails = () => {
           {/* Details Section */}
           <div className="p-6 flex flex-col justify-between">
             {/* Item Name */}
-            <h2 className="text-2xl font-bold ">{itemName}</h2>
+            <h2 className="text-3xl font-bold ">{itemName}</h2>
 
             {/* Category */}
-            <p className="text-sm  mt-1">
+            <p className="text-lg  mt-1">
               Category: <span className="font-medium">{categoryName}</span>
             </p>
 
             {/* Description */}
-            <p className=" mt-4">{description}</p>
+            <p className="text-lg font-thin mt-4">{description}</p>
 
             {/* Price */}
-            <p className="text-lg font-semibold  mt-4">Price: {price}</p>
+            <p className="text-lg font-thin mt-4">Price: {price} $</p>
 
             {/* Rating */}
             <div className="flex items-center mt-2">
@@ -67,15 +67,15 @@ const ViewDetails = () => {
             </div>
 
             {/* Customization */}
-            <p className="text-sm  mt-4">
+            <p className="text-lg  mt-4">
               Customization:{' '}
-              <span className="font-medium">{customization}</span>
+              <span className=" text-lg font-thin">{customization}</span>
             </p>
 
             {/* Processing Time */}
-            <p className="text-sm  mt-2">
+            <p className="text-lg  mt-2">
               Processing Time:{' '}
-              <span className="font-medium">{processingTime}</span>
+              <span className="font-thin">{processingTime}</span>
             </p>
 
             {/* Stock Status */}
@@ -86,9 +86,15 @@ const ViewDetails = () => {
             {/* Back Button */}
             <button
               onClick={() => navigate(-1)}
-              className="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+              className="mt-6 bg-black text-white py-2 px-4 font-bold rounded hover:bg-white hover:text-black transition border border-inherit"
             >
               Back to List
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="mt-6 font-bold bg-black text-white py-2 px-4 rounded hover:bg-white hover:text-black transition border border-inherit"
+            >
+              Back to Home
             </button>
           </div>
         </div>
