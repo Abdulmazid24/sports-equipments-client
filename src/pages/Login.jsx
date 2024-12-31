@@ -1,46 +1,83 @@
-import React, { useState } from 'react';
-import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { FaGoogle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
+import Swal from 'sweetalert2';
+import { signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth/web-extension';
+import auth from '../firebase/firebase.config';
+import { toast, ToastContainer } from 'react-toastify';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const { loginUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = e => {
+  const handleLogin = e => {
     e.preventDefault();
-    setError(''); // Reset the error message
-    if (email && password) {
-      // Perform login logic here
-      console.log('Logged in with:', { email, password });
-      // Navigate to home or dashboard
-      navigate('/');
-    } else {
-      setError('Please fill out both email and password fields.');
-    }
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    loginUser(email, password)
+      .then(result => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(result.user);
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${error.message}`,
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      });
   };
 
-  const handleGoogleLogin = () => {
-    // Perform Google login logic
-    console.log('Google login clicked');
+  const provider = new GoogleAuthProvider();
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        setUser(user);
+        toast.success('Login successful!', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      })
+      .catch(error => {
+        setErrorMessage(error.message);
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
   };
-
-  const handleGithubLogin = () => {
-    // Perform GitHub login logic
-    console.log('GitHub login clicked');
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-950 via-lime-950 to-indigo-950 flex items-center justify-center">
       <div className="w-full max-w-md p-6 bg-green-100 rounded-md border-2">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">
           Welcome Back!
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {error && (
-            <div className="bg-red-100 text-red-600 p-2 rounded">{error}</div>
-          )}
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -51,13 +88,13 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="Enter your email"
+              required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div className="relative">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
@@ -65,13 +102,25 @@ const Login = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
+              name="password"
+              required
               placeholder="Enter your password"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
             />
+            <button
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-9 text-2xl"
+            >
+              {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            </button>
+
+            <div className="mb-4 ">
+              <Link href="#" className="text-sm text-blue-500 hover:underline">
+                Forgot Password?
+              </Link>
+            </div>
           </div>
           <button
             type="submit"
@@ -87,18 +136,19 @@ const Login = () => {
         </div>
         <div className="flex space-x-4 mt-4">
           <button
-            onClick={handleGoogleLogin}
+            onClick={handleGoogleSignIn}
             className="flex-1 bg-gradient-to-r from-indigo-950 via-black to-indigo-950 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-red-600 transition duration-300 font-bold"
           >
             <FaGoogle />
-            <span>Google</span>
+            <span>Continue With Google</span>
           </button>
+          <ToastContainer />
         </div>
         <p className="text-center text-sm text-gray-600 mt-6">
-          Don't have an account?{' '}
-          <a href="/register" className="text-blue-500 hover:underline">
-            Sign up
-          </a>
+          Don't have an account? Please Sign Up{' '}
+          <Link to="/signup" className="text-blue-500 hover:underline">
+            Sign Up
+          </Link>
         </p>
       </div>
     </div>

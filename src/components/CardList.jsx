@@ -48,7 +48,7 @@ const CardList = ({ product, products, setProducts }) => {
   return (
     <div className="relative bg-gradient-to-r from-indigo-950 via-black to-indigo-950 text-white rounded-lg shadow-md overflow-hidden hover:scale-100 transition-transform duration-300 flex flex-col md:flex-row md:justify-between p-4 gap-2 border border-inherit space-y-3">
       {/* Image Section */}
-      <div className="w-1/3 hover:w-full p-3  rounded-sm transition-transform duration-300">
+      <div className="w-1/3  max-h-64 hover:w-full p-3  rounded-sm transition-transform duration-300">
         <img src={image} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="space-y-2">

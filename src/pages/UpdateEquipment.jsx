@@ -73,7 +73,7 @@ const UpdateEquipment = () => {
     <div className="min-h-screen bg-gradient-to-r from-indigo-950 via-black to-indigo-950 flex justify-center items-center py-4">
       <div className="bg-white p-8 rounded-lg border-4 border-amber-950 w-full max-w-lg">
         <h2 className="text-3xl font-bold text-center mb-6 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-950 via-black to-indigo-950">
-          Update a Sports Equipment{itemName}
+          Update a Sports Equipment
         </h2>
 
         <form
@@ -212,7 +212,7 @@ const UpdateEquipment = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-indigo-950 via-black to-indigo-950 text-white p-2 rounded hover:shadow-lg transition duration-300"
           >
-            Add Equipment
+            Update Equipment
           </button>
         </form>
         {errorMessage && (

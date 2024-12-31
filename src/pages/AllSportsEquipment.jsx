@@ -18,8 +18,8 @@ const AllSportsEquipment = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-6">
+    <div className="py-10 bg-gradient-to-r from-indigo-950 via-black to-indigo-950 min-h-screen font-semibold">
+      <h1 className="text-3xl text-white font-bold text-center mb-6">
         All Sports Equipment
       </h1>
 
@@ -27,8 +27,8 @@ const AllSportsEquipment = () => {
         <p className="text-center text-lg font-medium">Loading...</p>
       ) : equipments.length > 0 ? (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300 shadow-md">
-            <thead className="bg-gray-200">
+          <table className="min-w-full bg-gradient-to-r from-indigo-950 via-black to-indigo-950  text-white border-gray-300 text-center">
+            <thead className="text-center p-3 border">
               <tr>
                 <th className="py-2 px-4 border-b">Image</th>
                 <th className="py-2 px-4 border-b">Name</th>
@@ -37,9 +37,12 @@ const AllSportsEquipment = () => {
                 <th className="py-2 px-4 border-b">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center ">
               {equipments.map(equipment => (
-                <tr key={equipment._id} className="hover:bg-gray-100">
+                <tr
+                  key={equipment._id}
+                  className="hover:bg-gray-100 hover:text-gray-950"
+                >
                   <td className="py-2 px-4 border-b">
                     <img
                       src={equipment.image}
@@ -47,7 +50,9 @@ const AllSportsEquipment = () => {
                       className="w-16 h-16 object-cover rounded"
                     />
                   </td>
-                  <td className="py-2 px-4 border-b">{equipment.itemName}</td>
+                  <td className="py-2 px-4 border-b rounded-b-xl">
+                    {equipment.itemName}
+                  </td>
                   <td className="py-2 px-4 border-b">
                     {equipment.categoryName}
                   </td>
@@ -57,7 +62,7 @@ const AllSportsEquipment = () => {
                       onClick={() =>
                         navigate(`/equipment-details/${equipment._id}`)
                       }
-                      className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded shadow hover:bg-blue-600"
+                      className="px-4 py-2 bg-gray-950 text-white text-sm font-semibold border border-gray-300 rounded shadow hover:bg-blue-600"
                     >
                       View Details
                     </button>

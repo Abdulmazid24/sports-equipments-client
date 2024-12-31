@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const EquipmentCard = ({ equipment }) => {
-  const { image, itemName, description, onDetailsClick } = equipment;
+  const { _id, image, itemName, description } = equipment;
   return (
     <div
       className="relative bg-cover bg-center rounded-sm border overflow-hidden hover:scale-105 transition-transform duration-300"
@@ -26,12 +27,12 @@ const EquipmentCard = ({ equipment }) => {
         <p className="text-lg font-medium mb-4">{description}</p>
 
         {/* Details Button */}
-        <button
+        <Link
+          to={`/viewDetails/${_id}`}
           className="bg-gradient-to-r from-indigo-950 via-black to-indigo-950 hover:bg-gray-950 text-white font-semibold py-2 px-4 rounded-md"
-          onClick={onDetailsClick}
         >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
