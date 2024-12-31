@@ -10,6 +10,7 @@ import AllSportsEquipment from '../pages/AllSportsEquipment';
 import UpdateEquipment from '../pages/UpdateEquipment';
 import Profile from '../pages/Profile';
 import ViewDetails from '../pages/ViewDetails';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/viewDetails/:id',
-        element: <ViewDetails></ViewDetails>,
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/equipments/${params.id}`),
       },
