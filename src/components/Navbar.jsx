@@ -101,14 +101,6 @@ const Navbar = () => {
               </button>
             </Link>
           )}
-          {/* {user && (
-            <button
-              title="Your profile"
-              className="px-3 py-1 border-2 border-black rounded-full bg-gray-500 text-white text-2xl font-normal mx-3"
-            >
-              <Link to={'/profile'}>A</Link>
-            </button>
-          )} */}
         </div>
       </div>
     </div>

@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       {
         path: '/myEquipmentList',
         loader: () => fetch('http://localhost:5000/equipments'),
-        element: <MyEquipmentList></MyEquipmentList>,
+        element: (
+          <PrivateRoute>
+            <MyEquipmentList></MyEquipmentList>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/login',

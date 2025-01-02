@@ -8,7 +8,7 @@ const EquipmentCard = ({ equipment }) => {
       className="relative bg-cover bg-center rounded-sm border overflow-hidden hover:scale-105 transition-transform duration-300"
       style={{
         backgroundImage: `url(${image})`,
-        height: '400px',
+        height: '350px',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -29,7 +29,7 @@ const EquipmentCard = ({ equipment }) => {
         {/* Details Button */}
         <Link
           to={`/viewDetails/${_id}`}
-          className="bg-gradient-to-r from-indigo-950 via-black to-indigo-950 hover:bg-gray-950 text-white font-semibold py-2 px-4 rounded-md"
+          className="bg-gradient-to-r from-indigo-950 via-black to-indigo-950 hover:bg-gray-950 text-white font-semibold py-2 px-4 rounded-md text-center"
         >
           View Details
         </Link>

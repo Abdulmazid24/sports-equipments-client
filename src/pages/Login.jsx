@@ -27,7 +27,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(result.user);
+        e.target.reset();
       })
       .catch(error => {
         Swal.fire({
